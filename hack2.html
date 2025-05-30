@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PUB</title>
+</head>
+<body>
+
+    <div id="terminal"></div>
+
+    <script>
+        const terminal = document.getElementById("terminal");
+        const commands = [
+            "techno-world est un bon...",
+            "suivez nous...",
+            "nous vous aiderons en retour ...",
+            "abonnez-vous...",
+            "suivez nous...",
+            "vous ne serez pas decu...",
+            "techno-world est là pour vous...",
+            "...",
+            "Merci !...",
+        ];
+
+        function typeCommand(command, speed) {
+            return new Promise((resolve) => {
+                let index = 0;
+                const interval = setInterval(() => {
+                    terminal.textContent += command[index];
+                    index++;
+                    if (index === command.length) {
+                        clearInterval(interval);
+                        terminal.textContent += "\n";
+                        resolve();
+                    }
+                }, speed);
+            });
+        }
+
+        async function runCommands() {
+            for (let command of commands) {
+                await typeCommand("> " + command, 50);
+                if (command === "Bypassing firewall...") {
+                    createProgressBar();
+                    await simulateProgress();
+                }
+            }
+        }
+
+        function createProgressBar() {
+            const progressBar = document.createElement("div");
+            progressBar.className = "progress-bar";
+            const fill = document.createElement("div");
+            fill.className = "progress-bar-fill";
+
+            progressBar.appendChild(fill);
+            terminal.appendChild(progressBar);
+        }
+
+        function simulateProgress() {
+            return new Promise((resolve) => {
+                const fill = document.querySelector(".progress-bar-fill");
+                let width = 0;
+                const interval = setInterval(() => {
+                    width += 5;
+                    fill.style.width = width + "%";
+                    if (width >= 100) {
+                        clearInterval(interval);
+                        resolve();
+                    }
+                }, 100);
+            });
+        }
+
+        runCommands();
+
+    </script>
+
+    <div>
+        <a href="C:\html projet\developpement web\généralité_frontend.html">pour le Front-end pour debutant(developpement web);</a>
+        <a href="C:\html projet\codage de donnes\codage de données 1.html">pour Codage de données;</a>
+        <a href="javascript1.html">pour les bases de l'informatique;</a>
+        <a href="python1.html">pour Python;</a>
+        <a href="lang_c1.html">pour C;</a>
+            <a href="C:\html projet\tecnologie web fondamentale\technologie pour tous acc2.html">fondement web</a>
+
+    </div>
+
+</body>
+</html>
